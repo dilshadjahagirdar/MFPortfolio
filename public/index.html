@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="MyApp" ng-controller="MainController">
+	<div class="container">
+		<form ng-submit="addFund(fund);">
+			<p>Select fund purchase date:</p>
+			<p><input type="date" class="form-control" ng-model="fund.purchase_date" placeholder="select purchase date"></p>
+			<p>Enter price:</p>
+			<p><input type="number" class="form-control" ng-model="fund.amount" placeholder="Enter price"></p>
+
+			<button type="submit" class="btn btn-primary">
+			  <span ng-class="showSpinner? 'spinner-grow spinner-grow-sm' : ''"></span>
+			  Submit
+			</button>		
+		</form>	
+	</div>
+	
+
+	<div class="container">
+		<table class="table table-hover">
+			<thead>
+				<th>Id</th>
+				<th>Purchase Date</th>
+				<th>Purchase Amount</th>
+				<th>Price per Unit</th>
+				<th>Units</th>
+				<th>Price per unit today</th>
+				<th>Investment Today</th>
+			</thead>
+			<tbody>
+				<tr ng-repeat="fund in funds">
+					<td>{{fund.id}}</td>
+					<td>{{fund.purchase_date}}</td>
+					<td>{{fund.amount}}</td>
+					<td>{{fund.price_per_unit}}</td>
+					<td>{{fund.units}}</td>
+					<td>{{fund.price_per_unit_today}}</td>
+					<td>{{fund.investment_today}}</td>
+				</tr>
+			</tbody>
+		</table>	
+	</div>
+	
+</div>
+
+</body>
+
+<script type="text/javascript" src="Controller.js"></script>
+<script type="text/javascript" src="Service.js"></script>
+
+</html>

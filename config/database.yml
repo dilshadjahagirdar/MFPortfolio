@@ -1,0 +1,19 @@
+default: &default
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
+
+general: &general
+  stripe:
+    secret_key: sk_test_kVptqlgAyXSZ6V11mmY0i0LA
+    publishable_key: pk_test_MRsnOLtVWhdSMjzByWQsDy9K
+
+development:
+  adapter: postgresql
+  encoding: utf-8
+  pool: 5
+  username: postgres
+  password: techbulls123
+  host: localhost
+  port: 5432
+  database: "my_app"
