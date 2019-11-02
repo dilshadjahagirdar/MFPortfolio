@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20191030153309) do
     t.decimal "investment_today"
     t.decimal "price_per_unit"
     t.decimal "price_per_unit_today"
+    t.text "fund_name"
+    t.text "fund_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

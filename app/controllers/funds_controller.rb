@@ -5,6 +5,11 @@ class FundsController < ApplicationController
   # GET /funds.json
   def index
     @funds = Fund.all
+    if @funds
+      render :json => {:funds => @funds}, status: 200
+    else
+      render :json => {:msg => "something went wrong"}, status: 500
+    end
   end
 
   # GET /funds/1
@@ -25,7 +30,10 @@ class FundsController < ApplicationController
   # POST /funds.json
   def create
     @fund = Fund.new
-    @fund.add_fund(params["fund"])
+    data = Hash.new
+    data["fund"] = params["fund"]
+    data["fund_details"] = params["fund_details"]
+    @fund.add_fund(data)
     if @fund.id
       render :json => {:fund => @fund}, status: 200
     else

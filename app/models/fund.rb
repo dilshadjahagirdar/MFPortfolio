@@ -2,8 +2,10 @@ require 'net/http'
 require 'json'
 class Fund < ApplicationRecord
 	def add_fund(params)
-		self.purchase_date = params["purchase_date"].to_date + 1
-		self.amount = params["amount"]
+		self.purchase_date = params["fund"]["purchase_date"].to_date + 1
+		self.amount = params["fund"]["amount"]
+		self.fund_code = params["fund_details"]["code"]
+		self.fund_name = params["fund_details"]["name"]
 		price_per_old_unit, price_per_new_unit = get_old_and_new_value(self)
 		self.price_per_unit = price_per_old_unit["value"].to_d.round(2)
 		self.units = (self.amount/self.price_per_unit).round(2)
@@ -24,9 +26,8 @@ class Fund < ApplicationRecord
 		response = Net::HTTP.get(uri)
 		data = response.split("\r\n")
 		finalData = Array.new
-
 		data.each do |d|
-			if d.include? "120502"
+			if d.include? self.fund_code
 				newData = Hash.new
 				temp = d.split(";")
 				newData["date"] = temp[7]

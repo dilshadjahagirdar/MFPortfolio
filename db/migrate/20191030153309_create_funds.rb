@@ -7,6 +7,8 @@ class CreateFunds < ActiveRecord::Migration[5.1]
       t.column :investment_today, :decimal
       t.column :price_per_unit, :decimal
       t.column :price_per_unit_today, :decimal
+      t.column :fund_name, :text
+      t.column :fund_code, :text
       t.timestamps
     end
   end
